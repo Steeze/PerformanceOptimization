@@ -1,0 +1,26 @@
+{
+  "name": "PerformanceOptimization",
+  "version": "1.0.0",
+  "description": "optimizing the critial rendering path and javascript",
+  "main": "Gulpfile.js",
+  "dependencies": {
+    "gulp-concat": "^2.6.0",
+    "gulp": "^3.9.0",
+    "gulp-minify-css": "^1.2.1",
+    "gulp-minify-html": "^1.0.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "gulp"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Steeze/PerformanceOptimization.git"
+  },
+  "author": "Erich Schutz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Steeze/PerformanceOptimization/issues"
+  },
+  "homepage": "https://github.com/Steeze/PerformanceOptimization"
+}
