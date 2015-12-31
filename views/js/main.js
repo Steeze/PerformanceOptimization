@@ -530,13 +530,12 @@ function updatePositions() {
 
   //window.requestAnimationFrame(updatePositions);
   //var items = document.querySelectorAll('.mover');
-  
+  var topOfPage = (document.body.scrollTop / 1250);
+
   for (var i = 0; i < items.length; i++) {
-    var phase = Math.sin((document.body.scrollTop / 1250) + (i % 5));
+    var phase = Math.sin(topOfPage + (i % 5));
     items[i].style.transform =  'translate3d(' + (100 * phase) + 'px, 0, 0)'; //items[i].style.left + 100 * phase + 'px';
-
   }
-
   locked = false;
 
   // User Timing API to the rescue again. Seriously, it's worth learning.
@@ -571,11 +570,12 @@ function runOnScroll() {
  * The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
  * CSSStyleDeclaration represents a collection of CSS property-value pairs
  * Fixed elem.basicLeft does not exist.
+ * Reduced the amount of sliding pizza elements generated from 200 to 35 images on creation.
  */
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8, s = 256;
 
-  for (var i = 0; i < 200; i++) {
+  for (var i = 0; i < 35; i++) {
 
     var elem = document.createElement('img');
     elem.className = 'mover';
