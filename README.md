@@ -14,6 +14,3 @@ Contains development files for the application.
 ######dist/
 
 This dist folder is created after the 'gulp prod' task is run. This folder will contain the production ready minified CSS, JavaScript and HTML
-
-##The Portfolio index page.
-
