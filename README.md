@@ -44,7 +44,7 @@ with the un-minified version of the JavaScript.
 ######JavaScript
 Discovered there wasn't really a reason to generate 200 pizza elements on the DOMContentLoaded event listener, so I updated that number down to 35, which still renders enough to fill the screen.
 
-'''js
+```js
 document.addEventListener('DOMContentLoaded', function() {
   var cols = 8, s = 256;
 
