@@ -61,3 +61,8 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelector("#movingPizzas1").appendChild(elem);
   }
 ```
+
+Since the '.mover' elements are needed in multiple elements, I moved the element parsing to be a global varible.
+```js
+items = document.querySelectorAll('.mover');
+```
