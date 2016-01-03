@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content=" FILL ME IN ">
-    <meta name="author" content=" FILL ME IN ">
+    <meta name="description" content=" This is project four of Udacity web site optimization project ">
+    <meta name="author" content=" Erich Schutz ">
     <title>Erich Schutz: Portfolio</title>
 
     <style>
@@ -13,28 +13,6 @@
 
     <link type="text/css" media="print" href="css/print.css"  rel="stylesheet">
 
-    <script>
-      (function(w,g){w['GoogleAnalyticsObject']=g;
-      w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
-
-      // TODO: replace with your Google Analytics profile ID.
-      ga('create', 'UA-XXXX-Y');
-      ga('send', 'pageview');
-    </script>
-    <script async src="http://www.google-analytics.com/analytics.js"></script>
-    <script>
-      function logCRP() {
-        var t = window.performance.timing,
-                dcl = t.domContentLoadedEventStart - t.domLoading,
-                complete = t.domComplete - t.domLoading;
-        var stats = document.getElementById("crp-stats");
-        stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
-      }
-
-      window.addEventListener("load", function(event) {
-        logCRP();
-      });
-    </script>
   </head>
 
   <body>
@@ -78,6 +56,27 @@
 
     <footer>
       <p>&copy; Web Performance 2014 <span id="crp-stats"></span></p>
+      <script async src="http://www.google-analytics.com/analytics.js"></script>
+      <script>
+        (function(w,g){w['GoogleAnalyticsObject']=g;
+          w[g]=w[g]||function(){(w[g].q=w[g].q||[]).push(arguments)};w[g].l=1*new Date();})(window,'ga');
+
+        // TODO: replace with your Google Analytics profile ID.
+        ga('create', 'UA-XXXX-Y');
+        ga('send', 'pageview');
+
+        function logCRP() {
+          var t = window.performance.timing,
+                  dcl = t.domContentLoadedEventStart - t.domLoading,
+                  complete = t.domComplete - t.domLoading;
+          var stats = document.getElementById("crp-stats");
+          stats.textContent = 'DCL: ' + dcl + 'ms, onload: ' + complete + 'ms';
+        }
+
+        window.addEventListener("load", function(event) {
+          logCRP();
+        });
+      </script>
     </footer>
       </div>
   </body>
