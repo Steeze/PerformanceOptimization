@@ -66,3 +66,53 @@ Since the '.mover' elements are needed in multiple elements, I moved the element
 ```js
 items = document.querySelectorAll('.mover');
 ```
+
+Debouncing the scroll event. This decouples the animation from the input that affects it. The main issue here is that we are triggering a reflow and repaint whenever we a scroll event.
+What we needed to do was decouple the scroll event from the updatePosition function, this is where requestAnimationFrame steps in to help
+
+```js
+var locked;
+window.addEventListener('scroll', runOnScroll);
+
+function runOnScroll() {
+  if (!locked) {
+    window.requestAnimationFrame(updatePositions);
+    locked = true;
+  }
+}
+```
+From researching parallax performance I came across https://medium.com/@dhg/parallax-done-right-82ced812e61c#.5fndudbac and made the recommended updates
+Updated to translate3d because its a property that is cheap for the browser to animate.
+
+```js
+function updatePositions() {
+  frame++;
+  window.performance.mark("mark_start_frame");
+
+  var topOfPage = (document.body.scrollTop / 1250);
+
+  for (var i = 0; i < items.length; i++) {
+    var phase = Math.sin(topOfPage + (i % 5));
+    items[i].style.transform =  'translate3d(' + (100 * phase) + 'px, 0, 0)'; //items[i].style.left + 100 * phase + 'px';
+  }
+  locked = false;
+```
+
+From researching nested functions, I cam across  http://code.tutsplus.com/tutorials/stop-nesting-functions-but-not-all-of-them--net-22315
+I then separated functions out to individual functions.
+Also from using the F12 developer tools I noticed the DOM querySelectorAll was spiking the memory usage and moving these actions outside of the for loop made a noticeable difference.
+
+```js
+
+function changePizzaSizes(size) {
+  var numberOfPizzas, dx, newwidth;
+  numberOfPizzas = document.querySelectorAll('.randomPizzaContainer').length;
+  dx = determineDx(document.querySelectorAll(".randomPizzaContainer")[0], size);
+  newwidth = (document.querySelectorAll(".randomPizzaContainer")[0].offsetWidth + dx) + 'px';
+
+  for (var i = 0; i < numberOfPizzas; i++) {
+    document.querySelectorAll(".randomPizzaContainer")[i].style.width = newwidth;
+  }
+}
+
+```
