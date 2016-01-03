@@ -400,13 +400,7 @@ var pizzaElementGenerator = function(i) {
 };
 
 // resizePizzas(size) is called when the slider in the "Our Pizzas" section of the website moves.
-/**
- * Problem 4
- *
- *
- */
 var resizePizzas = function(size) {
-
   window.performance.mark("mark_start_resize");   // User Timing API function
   changeSliderLabel(size);
   changePizzaSizes(size);
@@ -415,8 +409,7 @@ var resizePizzas = function(size) {
   window.performance.measure("measure_pizza_resize", "mark_start_resize", "mark_end_resize");
   var timeToResize = window.performance.getEntriesByName("measure_pizza_resize");
   console.log("Time to resize pizzas: " + timeToResize[0].duration + "ms");
-
-}; //END OF RESIZE PIZZA
+};
 
 // Changes the value for the size of the pizza above the slider
 function changeSliderLabel(size) {
@@ -435,10 +428,11 @@ function changeSliderLabel(size) {
   }
 }
 
-// Iterates through pizza elements on the page and changes their widths
 /**
- *  Separating functions out to individual functions.
- *  Removing variable declarations within for loops.
+ * Iterates through pizza elements on the page and changes their widths
+ * Separating functions out to individual functions.
+ *   http://code.tutsplus.com/tutorials/stop-nesting-functions-but-not-all-of-them--net-22315
+ * Removed the DOM parsing from within the loop.
  */
 function changePizzaSizes(size) {
   var numberOfPizzas, dx, newwidth;
@@ -456,11 +450,8 @@ function determineDx (elem, size) {
   var oldwidth = elem.offsetWidth;
   var windowwidth = document.querySelector("#randomPizzas").offsetWidth;
   var oldsize = oldwidth / windowwidth;
-
   var newsize = sizeSwitcher(size);
-
   var dx = (newsize - oldsize) * windowwidth;
-
   return dx;
 }
 
@@ -477,10 +468,6 @@ function sizeSwitcher (size) {
       console.log("bug in sizeSwitcher");
   }
 }
-
-
-
-
 
 window.performance.mark("mark_start_generating"); // collect timing data
 
@@ -510,16 +497,13 @@ function logAverageFrame(times) {   // times is the array of User Timing measure
   console.log("Average time to generate last 10 frames: " + sum / 10 + "ms");
 }
 
-
-
 /**
  * The following code for sliding background pizzas was pulled from Ilya's demo found at:
  * https://www.igvita.com/slides/2012/devtools-tips-and-tricks/jank-demo.html
  * Moves the sliding background pizzas based on scroll position
-*  The main issue here is that we are triggering a reflow and repaint whenever we get a scroll event
- *  Problem two
- *  Moved finding the DOM elements outside of function.
- *  Researched parallax preformance
+ * The main issue here is that we are triggering a reflow and repaint whenever we get a scroll event
+ * Moved finding the DOM elements outside of function.
+ * Researched parallax performance
  *    https://medium.com/@dhg/parallax-done-right-82ced812e61c#.5fndudbac
  *    https://docs.webplatform.org/wiki/css/functions/translate3d()
  *    http://www.javascriptkit.com/dhtmltutors/parallaxscrolling/
@@ -528,8 +512,6 @@ function updatePositions() {
   frame++;
   window.performance.mark("mark_start_frame");
 
-  //window.requestAnimationFrame(updatePositions);
-  //var items = document.querySelectorAll('.mover');
   var topOfPage = (document.body.scrollTop / 1250);
 
   for (var i = 0; i < items.length; i++) {
@@ -550,8 +532,7 @@ function updatePositions() {
 
 /**
  * http://www.html5rocks.com/en/tutorials/speed/animations/
- * Problem 3 the scroll event listener.
- * SO : http://stackoverflow.com/questions/12522807/scroll-event-listener-javascript
+ * http://stackoverflow.com/questions/12522807/scroll-event-listener-javascript
  */
 var locked;
 window.addEventListener('scroll', runOnScroll);
@@ -565,8 +546,6 @@ function runOnScroll() {
 
 /**
  * Generates the sliding pizzas when the page loads.
- * TODO: resize images. move to CSS?
- * First Problem
  * The DOMContentLoaded event is fired when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading.
  * CSSStyleDeclaration represents a collection of CSS property-value pairs
  * Fixed elem.basicLeft does not exist.
@@ -590,8 +569,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
   /**
-   *Move this outside of the updatePosition function.
-   * It only needs to find the movers once.
+   * Moved finding the '.mover' elements outside of the updatePosition function.
+   * We only need to find the movers once.
    */
   items = document.querySelectorAll('.mover');
   updatePositions();
